@@ -4,11 +4,15 @@ export type Role = "admin" | "teacher";
 
 interface RoleCtx {
   role: Role;
-  setRole: (r: Role) => void;
+  setRole: (role: Role) => void;
   teacherName: string;
 }
 
-const Ctx = createContext<RoleCtx>({ role: "admin", setRole: () => {}, teacherName: "Cô Lý" });
+const Ctx = createContext<RoleCtx>({
+  role: "admin",
+  setRole: () => {},
+  teacherName: "Cô Lý",
+});
 
 export function RoleProvider({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<Role>("admin");

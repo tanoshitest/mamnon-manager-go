@@ -1,39 +1,85 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Card, Btn, Select, Input } from "@/components/ui-bits";
+import { Btn, Card, Input, Select } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/cong/dieu-chinh")({ component: Page });
 
+const workStatuses = [
+  { label: "Ngày nghỉ", cong: "0" },
+  { label: "Vắng sáng", cong: "0.5" },
+  { label: "Vắng chiều", cong: "0.5" },
+  { label: "Vắng ăn chiều", cong: "1" },
+  { label: "Ngày làm bình thường", cong: "1" },
+  { label: "Ngày làm chủ nhật", cong: "1" },
+];
+
 function Page() {
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-3xl">
       <Card>
-        <h3 className="font-semibold mb-4">Điều chỉnh công giáo viên</h3>
+        <h3 className="mb-4 font-semibold">Điều chỉnh chấm công giáo viên</h3>
         <div className="grid grid-cols-2 gap-4">
-          <Field label="Giáo viên"><Select><option>Cô Lý</option><option>Cô Mai</option><option>Cô Hạnh</option></Select></Field>
-          <Field label="Ngày"><Input type="date" defaultValue="2026-06-06" /></Field>
-          <Field label="Loại điều chỉnh">
+          <Field label="Giáo viên">
             <Select>
-              <option>Nghỉ nguyên ngày</option>
-              <option>Nghỉ nửa ngày</option>
-              <option>Dạy thay</option>
-              <option>Tăng ca</option>
-              <option>Làm Chủ nhật</option>
-              <option>Điều chỉnh khác</option>
+              <option>Cô Lý</option>
+              <option>Cô Mai</option>
+              <option>Cô Hạnh</option>
             </Select>
           </Field>
-          <Field label="Số công điều chỉnh"><Input defaultValue="-1" /></Field>
-          <Field label="Lý do (bắt buộc)" full><Input placeholder="VD: Nghỉ ốm có giấy bác sĩ" /></Field>
+          <Field label="Ngày">
+            <Input type="date" defaultValue="2026-06-06" />
+          </Field>
+          <Field label="Trạng thái chấm công">
+            <Select>
+              {workStatuses.map((status) => (
+                <option key={status.label}>{status.label}</option>
+              ))}
+            </Select>
+          </Field>
+          <Field label="Số công">
+            <Select>
+              {workStatuses.map((status) => (
+                <option key={status.label} value={status.cong}>
+                  {status.cong}
+                </option>
+              ))}
+            </Select>
+          </Field>
+          <Field label="Lịch trực">
+            <Select>
+              <option>Không trực</option>
+              <option>6h15 sáng</option>
+            </Select>
+          </Field>
+          <Field label="Buổi ảnh hưởng">
+            <Select>
+              <option>Cả ngày</option>
+              <option>Buổi sáng</option>
+              <option>Buổi chiều</option>
+              <option>Ăn chiều</option>
+              <option>Chủ nhật</option>
+            </Select>
+          </Field>
+          <Field label="Ghi chú" full>
+            <Input placeholder="VD: Nghỉ ốm có phép, vắng sáng, trực 6h15..." />
+          </Field>
         </div>
-        <div className="flex justify-end gap-2 mt-6">
+        <div className="mt-6 flex justify-end gap-2">
           <Btn variant="secondary">Hủy</Btn>
-          <Btn>Lưu điều chỉnh</Btn>
+          <Btn>Lưu chấm công</Btn>
         </div>
-        <p className="text-xs text-muted-foreground mt-4">* Mọi điều chỉnh sẽ lưu log: người sửa, thời gian, lý do.</p>
+        <p className="mt-4 text-xs text-muted-foreground">
+          * Mọi điều chỉnh sẽ lưu lịch sử gồm người sửa, thời gian và ghi chú.
+        </p>
       </Card>
     </div>
   );
 }
 
-function Field({ label, children, full }: any) {
-  return <div className={full ? "col-span-2" : ""}><label className="text-xs text-muted-foreground block mb-1">{label}</label>{children}</div>;
+function Field({ label, children, full }: { label: string; children: React.ReactNode; full?: boolean }) {
+  return (
+    <div className={full ? "col-span-2" : ""}>
+      <label className="mb-1 block text-xs text-muted-foreground">{label}</label>
+      {children}
+    </div>
+  );
 }

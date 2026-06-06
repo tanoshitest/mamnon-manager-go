@@ -21,7 +21,7 @@ export function StatCard({ label, value, hint, tone = "default" }: { label: stri
   );
 }
 
-export function Btn({ children, variant = "primary", onClick, className = "" }: { children: ReactNode; variant?: "primary" | "secondary" | "danger" | "ghost" | "success"; onClick?: () => void; className?: string }) {
+export function Btn({ children, variant = "primary", onClick, className = "", disabled = false }: { children: ReactNode; variant?: "primary" | "secondary" | "danger" | "ghost" | "success"; onClick?: () => void; className?: string; disabled?: boolean }) {
   const v: Record<string, string> = {
     primary: "bg-primary text-primary-foreground hover:opacity-90",
     secondary: "bg-secondary text-secondary-foreground hover:bg-accent",
@@ -30,7 +30,11 @@ export function Btn({ children, variant = "primary", onClick, className = "" }: 
     ghost: "hover:bg-secondary",
   };
   return (
-    <button onClick={onClick} className={`px-3 py-1.5 rounded-md text-sm font-medium transition ${v[variant]} ${className}`}>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`px-3 py-1.5 rounded-md text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-60 ${v[variant]} ${className}`}
+    >
       {children}
     </button>
   );
@@ -59,7 +63,15 @@ export function Input(p: any) {
   return <input {...p} className={`text-sm border rounded-md px-2 py-1.5 bg-background focus:outline-none focus:ring-2 focus:ring-ring ${p.className ?? ""}`} />;
 }
 
-export function DataTable({ headers, rows }: { headers: string[]; rows: ReactNode[][] }) {
+export function DataTable({
+  headers,
+  rows,
+  onRowClick,
+}: {
+  headers: string[];
+  rows: ReactNode[][];
+  onRowClick?: (rowIndex: number) => void;
+}) {
   return (
     <div className="bg-card border rounded-lg overflow-hidden">
       <div className="overflow-x-auto">
@@ -69,8 +81,20 @@ export function DataTable({ headers, rows }: { headers: string[]; rows: ReactNod
           </thead>
           <tbody>
             {rows.map((r, i) => (
-              <tr key={i} className="hover:bg-secondary/50 data-table-row-hover">
-                {r.map((c, j) => <td key={j} className="data-table-td">{c}</td>)}
+              <tr
+                key={i}
+                className={`hover:bg-secondary/50 data-table-row-hover ${onRowClick ? "cursor-pointer" : ""}`}
+                onClick={onRowClick ? () => onRowClick(i) : undefined}
+              >
+                {r.map((c, j) => (
+                  <td
+                    key={j}
+                    className="data-table-td"
+                    onClick={onRowClick && j === r.length - 1 ? (e) => e.stopPropagation() : undefined}
+                  >
+                    {c}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>

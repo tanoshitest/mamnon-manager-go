@@ -77,15 +77,21 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-size: 14px;
   }
-  table { font-size: 14px; }
-  th { font-weight: 600; }
+  table {
+    font-size: 14px;
+  }
+  th {
+    font-weight: 600;
+  }
 }
 
 @utility data-table {
@@ -108,4 +114,47 @@
 }
 @utility data-table-row-hover {
   transition: background-color 0.1s;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .tuition-print-area,
+  .tuition-print-area * {
+    visibility: visible !important;
+  }
+
+  .tuition-print-area {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+.modal-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modal-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }

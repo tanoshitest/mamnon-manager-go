@@ -36,6 +36,9 @@ import { Route as GvBangCongRouteImport } from './routes/gv.bang-cong'
 import { Route as CongDieuChinhRouteImport } from './routes/cong.dieu-chinh'
 import { Route as CongChotCongRouteImport } from './routes/cong.chot-cong'
 import { Route as CongBangCongRouteImport } from './routes/cong.bang-cong'
+import { Route as BaoCaoThuChiRouteImport } from './routes/bao-cao.thu-chi'
+import { Route as BaoCaoDiemDanhRouteImport } from './routes/bao-cao.diem-danh'
+import { Route as BaoCaoChamCongRouteImport } from './routes/bao-cao.cham-cong'
 
 const ThuChiRoute = ThuChiRouteImport.update({
   id: '/thu-chi',
@@ -172,10 +175,25 @@ const CongBangCongRoute = CongBangCongRouteImport.update({
   path: '/cong/bang-cong',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BaoCaoThuChiRoute = BaoCaoThuChiRouteImport.update({
+  id: '/thu-chi',
+  path: '/thu-chi',
+  getParentRoute: () => BaoCaoRoute,
+} as any)
+const BaoCaoDiemDanhRoute = BaoCaoDiemDanhRouteImport.update({
+  id: '/diem-danh',
+  path: '/diem-danh',
+  getParentRoute: () => BaoCaoRoute,
+} as any)
+const BaoCaoChamCongRoute = BaoCaoChamCongRouteImport.update({
+  id: '/cham-cong',
+  path: '/cham-cong',
+  getParentRoute: () => BaoCaoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/bao-cao': typeof BaoCaoRoute
+  '/bao-cao': typeof BaoCaoRouteWithChildren
   '/cau-hinh': typeof CauHinhRoute
   '/dich-vu': typeof DichVuRoute
   '/diem-danh': typeof DiemDanhRoute
@@ -184,6 +202,9 @@ export interface FileRoutesByFullPath {
   '/lich-phan-cong': typeof LichPhanCongRoute
   '/lop-hoc': typeof LopHocRoute
   '/thu-chi': typeof ThuChiRoute
+  '/bao-cao/cham-cong': typeof BaoCaoChamCongRoute
+  '/bao-cao/diem-danh': typeof BaoCaoDiemDanhRoute
+  '/bao-cao/thu-chi': typeof BaoCaoThuChiRoute
   '/cong/bang-cong': typeof CongBangCongRoute
   '/cong/chot-cong': typeof CongChotCongRoute
   '/cong/dieu-chinh': typeof CongDieuChinhRoute
@@ -204,7 +225,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/bao-cao': typeof BaoCaoRoute
+  '/bao-cao': typeof BaoCaoRouteWithChildren
   '/cau-hinh': typeof CauHinhRoute
   '/dich-vu': typeof DichVuRoute
   '/diem-danh': typeof DiemDanhRoute
@@ -213,6 +234,9 @@ export interface FileRoutesByTo {
   '/lich-phan-cong': typeof LichPhanCongRoute
   '/lop-hoc': typeof LopHocRoute
   '/thu-chi': typeof ThuChiRoute
+  '/bao-cao/cham-cong': typeof BaoCaoChamCongRoute
+  '/bao-cao/diem-danh': typeof BaoCaoDiemDanhRoute
+  '/bao-cao/thu-chi': typeof BaoCaoThuChiRoute
   '/cong/bang-cong': typeof CongBangCongRoute
   '/cong/chot-cong': typeof CongChotCongRoute
   '/cong/dieu-chinh': typeof CongDieuChinhRoute
@@ -234,7 +258,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/bao-cao': typeof BaoCaoRoute
+  '/bao-cao': typeof BaoCaoRouteWithChildren
   '/cau-hinh': typeof CauHinhRoute
   '/dich-vu': typeof DichVuRoute
   '/diem-danh': typeof DiemDanhRoute
@@ -243,6 +267,9 @@ export interface FileRoutesById {
   '/lich-phan-cong': typeof LichPhanCongRoute
   '/lop-hoc': typeof LopHocRoute
   '/thu-chi': typeof ThuChiRoute
+  '/bao-cao/cham-cong': typeof BaoCaoChamCongRoute
+  '/bao-cao/diem-danh': typeof BaoCaoDiemDanhRoute
+  '/bao-cao/thu-chi': typeof BaoCaoThuChiRoute
   '/cong/bang-cong': typeof CongBangCongRoute
   '/cong/chot-cong': typeof CongChotCongRoute
   '/cong/dieu-chinh': typeof CongDieuChinhRoute
@@ -274,6 +301,9 @@ export interface FileRouteTypes {
     | '/lich-phan-cong'
     | '/lop-hoc'
     | '/thu-chi'
+    | '/bao-cao/cham-cong'
+    | '/bao-cao/diem-danh'
+    | '/bao-cao/thu-chi'
     | '/cong/bang-cong'
     | '/cong/chot-cong'
     | '/cong/dieu-chinh'
@@ -303,6 +333,9 @@ export interface FileRouteTypes {
     | '/lich-phan-cong'
     | '/lop-hoc'
     | '/thu-chi'
+    | '/bao-cao/cham-cong'
+    | '/bao-cao/diem-danh'
+    | '/bao-cao/thu-chi'
     | '/cong/bang-cong'
     | '/cong/chot-cong'
     | '/cong/dieu-chinh'
@@ -332,6 +365,9 @@ export interface FileRouteTypes {
     | '/lich-phan-cong'
     | '/lop-hoc'
     | '/thu-chi'
+    | '/bao-cao/cham-cong'
+    | '/bao-cao/diem-danh'
+    | '/bao-cao/thu-chi'
     | '/cong/bang-cong'
     | '/cong/chot-cong'
     | '/cong/dieu-chinh'
@@ -353,7 +389,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BaoCaoRoute: typeof BaoCaoRoute
+  BaoCaoRoute: typeof BaoCaoRouteWithChildren
   CauHinhRoute: typeof CauHinhRoute
   DichVuRoute: typeof DichVuRoute
   DiemDanhRoute: typeof DiemDanhRoute
@@ -572,12 +608,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CongBangCongRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bao-cao/thu-chi': {
+      id: '/bao-cao/thu-chi'
+      path: '/thu-chi'
+      fullPath: '/bao-cao/thu-chi'
+      preLoaderRoute: typeof BaoCaoThuChiRouteImport
+      parentRoute: typeof BaoCaoRoute
+    }
+    '/bao-cao/diem-danh': {
+      id: '/bao-cao/diem-danh'
+      path: '/diem-danh'
+      fullPath: '/bao-cao/diem-danh'
+      preLoaderRoute: typeof BaoCaoDiemDanhRouteImport
+      parentRoute: typeof BaoCaoRoute
+    }
+    '/bao-cao/cham-cong': {
+      id: '/bao-cao/cham-cong'
+      path: '/cham-cong'
+      fullPath: '/bao-cao/cham-cong'
+      preLoaderRoute: typeof BaoCaoChamCongRouteImport
+      parentRoute: typeof BaoCaoRoute
+    }
   }
 }
 
+interface BaoCaoRouteChildren {
+  BaoCaoChamCongRoute: typeof BaoCaoChamCongRoute
+  BaoCaoDiemDanhRoute: typeof BaoCaoDiemDanhRoute
+  BaoCaoThuChiRoute: typeof BaoCaoThuChiRoute
+}
+
+const BaoCaoRouteChildren: BaoCaoRouteChildren = {
+  BaoCaoChamCongRoute: BaoCaoChamCongRoute,
+  BaoCaoDiemDanhRoute: BaoCaoDiemDanhRoute,
+  BaoCaoThuChiRoute: BaoCaoThuChiRoute,
+}
+
+const BaoCaoRouteWithChildren =
+  BaoCaoRoute._addFileChildren(BaoCaoRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BaoCaoRoute: BaoCaoRoute,
+  BaoCaoRoute: BaoCaoRouteWithChildren,
   CauHinhRoute: CauHinhRoute,
   DichVuRoute: DichVuRoute,
   DiemDanhRoute: DiemDanhRoute,
@@ -607,3 +679,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
