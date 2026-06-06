@@ -9,38 +9,443 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ThuChiRouteImport } from './routes/thu-chi'
+import { Route as LopHocRouteImport } from './routes/lop-hoc'
+import { Route as LichPhanCongRouteImport } from './routes/lich-phan-cong'
+import { Route as HocSinhRouteImport } from './routes/hoc-sinh'
+import { Route as GiaoVienRouteImport } from './routes/giao-vien'
+import { Route as DiemDanhRouteImport } from './routes/diem-danh'
+import { Route as DichVuRouteImport } from './routes/dich-vu'
+import { Route as CauHinhRouteImport } from './routes/cau-hinh'
+import { Route as BaoCaoRouteImport } from './routes/bao-cao'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PhieuThuTaoRouteImport } from './routes/phieu-thu.tao'
+import { Route as PhieuThuDanhSachRouteImport } from './routes/phieu-thu.danh-sach'
+import { Route as PhieuThuDaHuyRouteImport } from './routes/phieu-thu.da-huy'
+import { Route as LuongTinhLuongRouteImport } from './routes/luong.tinh-luong'
+import { Route as LuongPhieuLuongRouteImport } from './routes/luong.phieu-luong'
+import { Route as LuongCauHinhRouteImport } from './routes/luong.cau-hinh'
+import { Route as HocPhiTaoPhieuRouteImport } from './routes/hoc-phi.tao-phieu'
+import { Route as HocPhiDanhSachRouteImport } from './routes/hoc-phi.danh-sach'
+import { Route as HocPhiBangGiaRouteImport } from './routes/hoc-phi.bang-gia'
+import { Route as GvPhieuLuongRouteImport } from './routes/gv.phieu-luong'
+import { Route as GvLopCuaToiRouteImport } from './routes/gv.lop-cua-toi'
+import { Route as GvLichDayRouteImport } from './routes/gv.lich-day'
+import { Route as GvDiemDanhRouteImport } from './routes/gv.diem-danh'
+import { Route as GvBangCongRouteImport } from './routes/gv.bang-cong'
+import { Route as CongDieuChinhRouteImport } from './routes/cong.dieu-chinh'
+import { Route as CongChotCongRouteImport } from './routes/cong.chot-cong'
+import { Route as CongBangCongRouteImport } from './routes/cong.bang-cong'
 
+const ThuChiRoute = ThuChiRouteImport.update({
+  id: '/thu-chi',
+  path: '/thu-chi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LopHocRoute = LopHocRouteImport.update({
+  id: '/lop-hoc',
+  path: '/lop-hoc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LichPhanCongRoute = LichPhanCongRouteImport.update({
+  id: '/lich-phan-cong',
+  path: '/lich-phan-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HocSinhRoute = HocSinhRouteImport.update({
+  id: '/hoc-sinh',
+  path: '/hoc-sinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiaoVienRoute = GiaoVienRouteImport.update({
+  id: '/giao-vien',
+  path: '/giao-vien',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiemDanhRoute = DiemDanhRouteImport.update({
+  id: '/diem-danh',
+  path: '/diem-danh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DichVuRoute = DichVuRouteImport.update({
+  id: '/dich-vu',
+  path: '/dich-vu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CauHinhRoute = CauHinhRouteImport.update({
+  id: '/cau-hinh',
+  path: '/cau-hinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaoCaoRoute = BaoCaoRouteImport.update({
+  id: '/bao-cao',
+  path: '/bao-cao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PhieuThuTaoRoute = PhieuThuTaoRouteImport.update({
+  id: '/phieu-thu/tao',
+  path: '/phieu-thu/tao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhieuThuDanhSachRoute = PhieuThuDanhSachRouteImport.update({
+  id: '/phieu-thu/danh-sach',
+  path: '/phieu-thu/danh-sach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhieuThuDaHuyRoute = PhieuThuDaHuyRouteImport.update({
+  id: '/phieu-thu/da-huy',
+  path: '/phieu-thu/da-huy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuongTinhLuongRoute = LuongTinhLuongRouteImport.update({
+  id: '/luong/tinh-luong',
+  path: '/luong/tinh-luong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuongPhieuLuongRoute = LuongPhieuLuongRouteImport.update({
+  id: '/luong/phieu-luong',
+  path: '/luong/phieu-luong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuongCauHinhRoute = LuongCauHinhRouteImport.update({
+  id: '/luong/cau-hinh',
+  path: '/luong/cau-hinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HocPhiTaoPhieuRoute = HocPhiTaoPhieuRouteImport.update({
+  id: '/hoc-phi/tao-phieu',
+  path: '/hoc-phi/tao-phieu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HocPhiDanhSachRoute = HocPhiDanhSachRouteImport.update({
+  id: '/hoc-phi/danh-sach',
+  path: '/hoc-phi/danh-sach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HocPhiBangGiaRoute = HocPhiBangGiaRouteImport.update({
+  id: '/hoc-phi/bang-gia',
+  path: '/hoc-phi/bang-gia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvPhieuLuongRoute = GvPhieuLuongRouteImport.update({
+  id: '/gv/phieu-luong',
+  path: '/gv/phieu-luong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvLopCuaToiRoute = GvLopCuaToiRouteImport.update({
+  id: '/gv/lop-cua-toi',
+  path: '/gv/lop-cua-toi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvLichDayRoute = GvLichDayRouteImport.update({
+  id: '/gv/lich-day',
+  path: '/gv/lich-day',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvDiemDanhRoute = GvDiemDanhRouteImport.update({
+  id: '/gv/diem-danh',
+  path: '/gv/diem-danh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvBangCongRoute = GvBangCongRouteImport.update({
+  id: '/gv/bang-cong',
+  path: '/gv/bang-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CongDieuChinhRoute = CongDieuChinhRouteImport.update({
+  id: '/cong/dieu-chinh',
+  path: '/cong/dieu-chinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CongChotCongRoute = CongChotCongRouteImport.update({
+  id: '/cong/chot-cong',
+  path: '/cong/chot-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CongBangCongRoute = CongBangCongRouteImport.update({
+  id: '/cong/bang-cong',
+  path: '/cong/bang-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bao-cao': typeof BaoCaoRoute
+  '/cau-hinh': typeof CauHinhRoute
+  '/dich-vu': typeof DichVuRoute
+  '/diem-danh': typeof DiemDanhRoute
+  '/giao-vien': typeof GiaoVienRoute
+  '/hoc-sinh': typeof HocSinhRoute
+  '/lich-phan-cong': typeof LichPhanCongRoute
+  '/lop-hoc': typeof LopHocRoute
+  '/thu-chi': typeof ThuChiRoute
+  '/cong/bang-cong': typeof CongBangCongRoute
+  '/cong/chot-cong': typeof CongChotCongRoute
+  '/cong/dieu-chinh': typeof CongDieuChinhRoute
+  '/gv/bang-cong': typeof GvBangCongRoute
+  '/gv/diem-danh': typeof GvDiemDanhRoute
+  '/gv/lich-day': typeof GvLichDayRoute
+  '/gv/lop-cua-toi': typeof GvLopCuaToiRoute
+  '/gv/phieu-luong': typeof GvPhieuLuongRoute
+  '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
+  '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
+  '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
+  '/luong/cau-hinh': typeof LuongCauHinhRoute
+  '/luong/phieu-luong': typeof LuongPhieuLuongRoute
+  '/luong/tinh-luong': typeof LuongTinhLuongRoute
+  '/phieu-thu/da-huy': typeof PhieuThuDaHuyRoute
+  '/phieu-thu/danh-sach': typeof PhieuThuDanhSachRoute
+  '/phieu-thu/tao': typeof PhieuThuTaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bao-cao': typeof BaoCaoRoute
+  '/cau-hinh': typeof CauHinhRoute
+  '/dich-vu': typeof DichVuRoute
+  '/diem-danh': typeof DiemDanhRoute
+  '/giao-vien': typeof GiaoVienRoute
+  '/hoc-sinh': typeof HocSinhRoute
+  '/lich-phan-cong': typeof LichPhanCongRoute
+  '/lop-hoc': typeof LopHocRoute
+  '/thu-chi': typeof ThuChiRoute
+  '/cong/bang-cong': typeof CongBangCongRoute
+  '/cong/chot-cong': typeof CongChotCongRoute
+  '/cong/dieu-chinh': typeof CongDieuChinhRoute
+  '/gv/bang-cong': typeof GvBangCongRoute
+  '/gv/diem-danh': typeof GvDiemDanhRoute
+  '/gv/lich-day': typeof GvLichDayRoute
+  '/gv/lop-cua-toi': typeof GvLopCuaToiRoute
+  '/gv/phieu-luong': typeof GvPhieuLuongRoute
+  '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
+  '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
+  '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
+  '/luong/cau-hinh': typeof LuongCauHinhRoute
+  '/luong/phieu-luong': typeof LuongPhieuLuongRoute
+  '/luong/tinh-luong': typeof LuongTinhLuongRoute
+  '/phieu-thu/da-huy': typeof PhieuThuDaHuyRoute
+  '/phieu-thu/danh-sach': typeof PhieuThuDanhSachRoute
+  '/phieu-thu/tao': typeof PhieuThuTaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bao-cao': typeof BaoCaoRoute
+  '/cau-hinh': typeof CauHinhRoute
+  '/dich-vu': typeof DichVuRoute
+  '/diem-danh': typeof DiemDanhRoute
+  '/giao-vien': typeof GiaoVienRoute
+  '/hoc-sinh': typeof HocSinhRoute
+  '/lich-phan-cong': typeof LichPhanCongRoute
+  '/lop-hoc': typeof LopHocRoute
+  '/thu-chi': typeof ThuChiRoute
+  '/cong/bang-cong': typeof CongBangCongRoute
+  '/cong/chot-cong': typeof CongChotCongRoute
+  '/cong/dieu-chinh': typeof CongDieuChinhRoute
+  '/gv/bang-cong': typeof GvBangCongRoute
+  '/gv/diem-danh': typeof GvDiemDanhRoute
+  '/gv/lich-day': typeof GvLichDayRoute
+  '/gv/lop-cua-toi': typeof GvLopCuaToiRoute
+  '/gv/phieu-luong': typeof GvPhieuLuongRoute
+  '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
+  '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
+  '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
+  '/luong/cau-hinh': typeof LuongCauHinhRoute
+  '/luong/phieu-luong': typeof LuongPhieuLuongRoute
+  '/luong/tinh-luong': typeof LuongTinhLuongRoute
+  '/phieu-thu/da-huy': typeof PhieuThuDaHuyRoute
+  '/phieu-thu/danh-sach': typeof PhieuThuDanhSachRoute
+  '/phieu-thu/tao': typeof PhieuThuTaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bao-cao'
+    | '/cau-hinh'
+    | '/dich-vu'
+    | '/diem-danh'
+    | '/giao-vien'
+    | '/hoc-sinh'
+    | '/lich-phan-cong'
+    | '/lop-hoc'
+    | '/thu-chi'
+    | '/cong/bang-cong'
+    | '/cong/chot-cong'
+    | '/cong/dieu-chinh'
+    | '/gv/bang-cong'
+    | '/gv/diem-danh'
+    | '/gv/lich-day'
+    | '/gv/lop-cua-toi'
+    | '/gv/phieu-luong'
+    | '/hoc-phi/bang-gia'
+    | '/hoc-phi/danh-sach'
+    | '/hoc-phi/tao-phieu'
+    | '/luong/cau-hinh'
+    | '/luong/phieu-luong'
+    | '/luong/tinh-luong'
+    | '/phieu-thu/da-huy'
+    | '/phieu-thu/danh-sach'
+    | '/phieu-thu/tao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bao-cao'
+    | '/cau-hinh'
+    | '/dich-vu'
+    | '/diem-danh'
+    | '/giao-vien'
+    | '/hoc-sinh'
+    | '/lich-phan-cong'
+    | '/lop-hoc'
+    | '/thu-chi'
+    | '/cong/bang-cong'
+    | '/cong/chot-cong'
+    | '/cong/dieu-chinh'
+    | '/gv/bang-cong'
+    | '/gv/diem-danh'
+    | '/gv/lich-day'
+    | '/gv/lop-cua-toi'
+    | '/gv/phieu-luong'
+    | '/hoc-phi/bang-gia'
+    | '/hoc-phi/danh-sach'
+    | '/hoc-phi/tao-phieu'
+    | '/luong/cau-hinh'
+    | '/luong/phieu-luong'
+    | '/luong/tinh-luong'
+    | '/phieu-thu/da-huy'
+    | '/phieu-thu/danh-sach'
+    | '/phieu-thu/tao'
+  id:
+    | '__root__'
+    | '/'
+    | '/bao-cao'
+    | '/cau-hinh'
+    | '/dich-vu'
+    | '/diem-danh'
+    | '/giao-vien'
+    | '/hoc-sinh'
+    | '/lich-phan-cong'
+    | '/lop-hoc'
+    | '/thu-chi'
+    | '/cong/bang-cong'
+    | '/cong/chot-cong'
+    | '/cong/dieu-chinh'
+    | '/gv/bang-cong'
+    | '/gv/diem-danh'
+    | '/gv/lich-day'
+    | '/gv/lop-cua-toi'
+    | '/gv/phieu-luong'
+    | '/hoc-phi/bang-gia'
+    | '/hoc-phi/danh-sach'
+    | '/hoc-phi/tao-phieu'
+    | '/luong/cau-hinh'
+    | '/luong/phieu-luong'
+    | '/luong/tinh-luong'
+    | '/phieu-thu/da-huy'
+    | '/phieu-thu/danh-sach'
+    | '/phieu-thu/tao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BaoCaoRoute: typeof BaoCaoRoute
+  CauHinhRoute: typeof CauHinhRoute
+  DichVuRoute: typeof DichVuRoute
+  DiemDanhRoute: typeof DiemDanhRoute
+  GiaoVienRoute: typeof GiaoVienRoute
+  HocSinhRoute: typeof HocSinhRoute
+  LichPhanCongRoute: typeof LichPhanCongRoute
+  LopHocRoute: typeof LopHocRoute
+  ThuChiRoute: typeof ThuChiRoute
+  CongBangCongRoute: typeof CongBangCongRoute
+  CongChotCongRoute: typeof CongChotCongRoute
+  CongDieuChinhRoute: typeof CongDieuChinhRoute
+  GvBangCongRoute: typeof GvBangCongRoute
+  GvDiemDanhRoute: typeof GvDiemDanhRoute
+  GvLichDayRoute: typeof GvLichDayRoute
+  GvLopCuaToiRoute: typeof GvLopCuaToiRoute
+  GvPhieuLuongRoute: typeof GvPhieuLuongRoute
+  HocPhiBangGiaRoute: typeof HocPhiBangGiaRoute
+  HocPhiDanhSachRoute: typeof HocPhiDanhSachRoute
+  HocPhiTaoPhieuRoute: typeof HocPhiTaoPhieuRoute
+  LuongCauHinhRoute: typeof LuongCauHinhRoute
+  LuongPhieuLuongRoute: typeof LuongPhieuLuongRoute
+  LuongTinhLuongRoute: typeof LuongTinhLuongRoute
+  PhieuThuDaHuyRoute: typeof PhieuThuDaHuyRoute
+  PhieuThuDanhSachRoute: typeof PhieuThuDanhSachRoute
+  PhieuThuTaoRoute: typeof PhieuThuTaoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/thu-chi': {
+      id: '/thu-chi'
+      path: '/thu-chi'
+      fullPath: '/thu-chi'
+      preLoaderRoute: typeof ThuChiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lop-hoc': {
+      id: '/lop-hoc'
+      path: '/lop-hoc'
+      fullPath: '/lop-hoc'
+      preLoaderRoute: typeof LopHocRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lich-phan-cong': {
+      id: '/lich-phan-cong'
+      path: '/lich-phan-cong'
+      fullPath: '/lich-phan-cong'
+      preLoaderRoute: typeof LichPhanCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoc-sinh': {
+      id: '/hoc-sinh'
+      path: '/hoc-sinh'
+      fullPath: '/hoc-sinh'
+      preLoaderRoute: typeof HocSinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/giao-vien': {
+      id: '/giao-vien'
+      path: '/giao-vien'
+      fullPath: '/giao-vien'
+      preLoaderRoute: typeof GiaoVienRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diem-danh': {
+      id: '/diem-danh'
+      path: '/diem-danh'
+      fullPath: '/diem-danh'
+      preLoaderRoute: typeof DiemDanhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dich-vu': {
+      id: '/dich-vu'
+      path: '/dich-vu'
+      fullPath: '/dich-vu'
+      preLoaderRoute: typeof DichVuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cau-hinh': {
+      id: '/cau-hinh'
+      path: '/cau-hinh'
+      fullPath: '/cau-hinh'
+      preLoaderRoute: typeof CauHinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bao-cao': {
+      id: '/bao-cao'
+      path: '/bao-cao'
+      fullPath: '/bao-cao'
+      preLoaderRoute: typeof BaoCaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +453,157 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/phieu-thu/tao': {
+      id: '/phieu-thu/tao'
+      path: '/phieu-thu/tao'
+      fullPath: '/phieu-thu/tao'
+      preLoaderRoute: typeof PhieuThuTaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/phieu-thu/danh-sach': {
+      id: '/phieu-thu/danh-sach'
+      path: '/phieu-thu/danh-sach'
+      fullPath: '/phieu-thu/danh-sach'
+      preLoaderRoute: typeof PhieuThuDanhSachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/phieu-thu/da-huy': {
+      id: '/phieu-thu/da-huy'
+      path: '/phieu-thu/da-huy'
+      fullPath: '/phieu-thu/da-huy'
+      preLoaderRoute: typeof PhieuThuDaHuyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luong/tinh-luong': {
+      id: '/luong/tinh-luong'
+      path: '/luong/tinh-luong'
+      fullPath: '/luong/tinh-luong'
+      preLoaderRoute: typeof LuongTinhLuongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luong/phieu-luong': {
+      id: '/luong/phieu-luong'
+      path: '/luong/phieu-luong'
+      fullPath: '/luong/phieu-luong'
+      preLoaderRoute: typeof LuongPhieuLuongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luong/cau-hinh': {
+      id: '/luong/cau-hinh'
+      path: '/luong/cau-hinh'
+      fullPath: '/luong/cau-hinh'
+      preLoaderRoute: typeof LuongCauHinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoc-phi/tao-phieu': {
+      id: '/hoc-phi/tao-phieu'
+      path: '/hoc-phi/tao-phieu'
+      fullPath: '/hoc-phi/tao-phieu'
+      preLoaderRoute: typeof HocPhiTaoPhieuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoc-phi/danh-sach': {
+      id: '/hoc-phi/danh-sach'
+      path: '/hoc-phi/danh-sach'
+      fullPath: '/hoc-phi/danh-sach'
+      preLoaderRoute: typeof HocPhiDanhSachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoc-phi/bang-gia': {
+      id: '/hoc-phi/bang-gia'
+      path: '/hoc-phi/bang-gia'
+      fullPath: '/hoc-phi/bang-gia'
+      preLoaderRoute: typeof HocPhiBangGiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/phieu-luong': {
+      id: '/gv/phieu-luong'
+      path: '/gv/phieu-luong'
+      fullPath: '/gv/phieu-luong'
+      preLoaderRoute: typeof GvPhieuLuongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/lop-cua-toi': {
+      id: '/gv/lop-cua-toi'
+      path: '/gv/lop-cua-toi'
+      fullPath: '/gv/lop-cua-toi'
+      preLoaderRoute: typeof GvLopCuaToiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/lich-day': {
+      id: '/gv/lich-day'
+      path: '/gv/lich-day'
+      fullPath: '/gv/lich-day'
+      preLoaderRoute: typeof GvLichDayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/diem-danh': {
+      id: '/gv/diem-danh'
+      path: '/gv/diem-danh'
+      fullPath: '/gv/diem-danh'
+      preLoaderRoute: typeof GvDiemDanhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/bang-cong': {
+      id: '/gv/bang-cong'
+      path: '/gv/bang-cong'
+      fullPath: '/gv/bang-cong'
+      preLoaderRoute: typeof GvBangCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cong/dieu-chinh': {
+      id: '/cong/dieu-chinh'
+      path: '/cong/dieu-chinh'
+      fullPath: '/cong/dieu-chinh'
+      preLoaderRoute: typeof CongDieuChinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cong/chot-cong': {
+      id: '/cong/chot-cong'
+      path: '/cong/chot-cong'
+      fullPath: '/cong/chot-cong'
+      preLoaderRoute: typeof CongChotCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cong/bang-cong': {
+      id: '/cong/bang-cong'
+      path: '/cong/bang-cong'
+      fullPath: '/cong/bang-cong'
+      preLoaderRoute: typeof CongBangCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BaoCaoRoute: BaoCaoRoute,
+  CauHinhRoute: CauHinhRoute,
+  DichVuRoute: DichVuRoute,
+  DiemDanhRoute: DiemDanhRoute,
+  GiaoVienRoute: GiaoVienRoute,
+  HocSinhRoute: HocSinhRoute,
+  LichPhanCongRoute: LichPhanCongRoute,
+  LopHocRoute: LopHocRoute,
+  ThuChiRoute: ThuChiRoute,
+  CongBangCongRoute: CongBangCongRoute,
+  CongChotCongRoute: CongChotCongRoute,
+  CongDieuChinhRoute: CongDieuChinhRoute,
+  GvBangCongRoute: GvBangCongRoute,
+  GvDiemDanhRoute: GvDiemDanhRoute,
+  GvLichDayRoute: GvLichDayRoute,
+  GvLopCuaToiRoute: GvLopCuaToiRoute,
+  GvPhieuLuongRoute: GvPhieuLuongRoute,
+  HocPhiBangGiaRoute: HocPhiBangGiaRoute,
+  HocPhiDanhSachRoute: HocPhiDanhSachRoute,
+  HocPhiTaoPhieuRoute: HocPhiTaoPhieuRoute,
+  LuongCauHinhRoute: LuongCauHinhRoute,
+  LuongPhieuLuongRoute: LuongPhieuLuongRoute,
+  LuongTinhLuongRoute: LuongTinhLuongRoute,
+  PhieuThuDaHuyRoute: PhieuThuDaHuyRoute,
+  PhieuThuDanhSachRoute: PhieuThuDanhSachRoute,
+  PhieuThuTaoRoute: PhieuThuTaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
