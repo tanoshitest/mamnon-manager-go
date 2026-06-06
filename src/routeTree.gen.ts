@@ -28,6 +28,11 @@ import { Route as LuongCauHinhRouteImport } from './routes/luong.cau-hinh'
 import { Route as HocPhiTaoPhieuRouteImport } from './routes/hoc-phi.tao-phieu'
 import { Route as HocPhiDanhSachRouteImport } from './routes/hoc-phi.danh-sach'
 import { Route as HocPhiBangGiaRouteImport } from './routes/hoc-phi.bang-gia'
+import { Route as GvPhieuLuongRouteImport } from './routes/gv.phieu-luong'
+import { Route as GvLopCuaToiRouteImport } from './routes/gv.lop-cua-toi'
+import { Route as GvLichDayRouteImport } from './routes/gv.lich-day'
+import { Route as GvDiemDanhRouteImport } from './routes/gv.diem-danh'
+import { Route as GvBangCongRouteImport } from './routes/gv.bang-cong'
 import { Route as CongDieuChinhRouteImport } from './routes/cong.dieu-chinh'
 import { Route as CongChotCongRouteImport } from './routes/cong.chot-cong'
 import { Route as CongBangCongRouteImport } from './routes/cong.bang-cong'
@@ -127,6 +132,31 @@ const HocPhiBangGiaRoute = HocPhiBangGiaRouteImport.update({
   path: '/hoc-phi/bang-gia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GvPhieuLuongRoute = GvPhieuLuongRouteImport.update({
+  id: '/gv/phieu-luong',
+  path: '/gv/phieu-luong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvLopCuaToiRoute = GvLopCuaToiRouteImport.update({
+  id: '/gv/lop-cua-toi',
+  path: '/gv/lop-cua-toi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvLichDayRoute = GvLichDayRouteImport.update({
+  id: '/gv/lich-day',
+  path: '/gv/lich-day',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvDiemDanhRoute = GvDiemDanhRouteImport.update({
+  id: '/gv/diem-danh',
+  path: '/gv/diem-danh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GvBangCongRoute = GvBangCongRouteImport.update({
+  id: '/gv/bang-cong',
+  path: '/gv/bang-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CongDieuChinhRoute = CongDieuChinhRouteImport.update({
   id: '/cong/dieu-chinh',
   path: '/cong/dieu-chinh',
@@ -157,6 +187,11 @@ export interface FileRoutesByFullPath {
   '/cong/bang-cong': typeof CongBangCongRoute
   '/cong/chot-cong': typeof CongChotCongRoute
   '/cong/dieu-chinh': typeof CongDieuChinhRoute
+  '/gv/bang-cong': typeof GvBangCongRoute
+  '/gv/diem-danh': typeof GvDiemDanhRoute
+  '/gv/lich-day': typeof GvLichDayRoute
+  '/gv/lop-cua-toi': typeof GvLopCuaToiRoute
+  '/gv/phieu-luong': typeof GvPhieuLuongRoute
   '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
   '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
   '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
@@ -181,6 +216,11 @@ export interface FileRoutesByTo {
   '/cong/bang-cong': typeof CongBangCongRoute
   '/cong/chot-cong': typeof CongChotCongRoute
   '/cong/dieu-chinh': typeof CongDieuChinhRoute
+  '/gv/bang-cong': typeof GvBangCongRoute
+  '/gv/diem-danh': typeof GvDiemDanhRoute
+  '/gv/lich-day': typeof GvLichDayRoute
+  '/gv/lop-cua-toi': typeof GvLopCuaToiRoute
+  '/gv/phieu-luong': typeof GvPhieuLuongRoute
   '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
   '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
   '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
@@ -206,6 +246,11 @@ export interface FileRoutesById {
   '/cong/bang-cong': typeof CongBangCongRoute
   '/cong/chot-cong': typeof CongChotCongRoute
   '/cong/dieu-chinh': typeof CongDieuChinhRoute
+  '/gv/bang-cong': typeof GvBangCongRoute
+  '/gv/diem-danh': typeof GvDiemDanhRoute
+  '/gv/lich-day': typeof GvLichDayRoute
+  '/gv/lop-cua-toi': typeof GvLopCuaToiRoute
+  '/gv/phieu-luong': typeof GvPhieuLuongRoute
   '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
   '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
   '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
@@ -232,6 +277,11 @@ export interface FileRouteTypes {
     | '/cong/bang-cong'
     | '/cong/chot-cong'
     | '/cong/dieu-chinh'
+    | '/gv/bang-cong'
+    | '/gv/diem-danh'
+    | '/gv/lich-day'
+    | '/gv/lop-cua-toi'
+    | '/gv/phieu-luong'
     | '/hoc-phi/bang-gia'
     | '/hoc-phi/danh-sach'
     | '/hoc-phi/tao-phieu'
@@ -256,6 +306,11 @@ export interface FileRouteTypes {
     | '/cong/bang-cong'
     | '/cong/chot-cong'
     | '/cong/dieu-chinh'
+    | '/gv/bang-cong'
+    | '/gv/diem-danh'
+    | '/gv/lich-day'
+    | '/gv/lop-cua-toi'
+    | '/gv/phieu-luong'
     | '/hoc-phi/bang-gia'
     | '/hoc-phi/danh-sach'
     | '/hoc-phi/tao-phieu'
@@ -280,6 +335,11 @@ export interface FileRouteTypes {
     | '/cong/bang-cong'
     | '/cong/chot-cong'
     | '/cong/dieu-chinh'
+    | '/gv/bang-cong'
+    | '/gv/diem-danh'
+    | '/gv/lich-day'
+    | '/gv/lop-cua-toi'
+    | '/gv/phieu-luong'
     | '/hoc-phi/bang-gia'
     | '/hoc-phi/danh-sach'
     | '/hoc-phi/tao-phieu'
@@ -305,6 +365,11 @@ export interface RootRouteChildren {
   CongBangCongRoute: typeof CongBangCongRoute
   CongChotCongRoute: typeof CongChotCongRoute
   CongDieuChinhRoute: typeof CongDieuChinhRoute
+  GvBangCongRoute: typeof GvBangCongRoute
+  GvDiemDanhRoute: typeof GvDiemDanhRoute
+  GvLichDayRoute: typeof GvLichDayRoute
+  GvLopCuaToiRoute: typeof GvLopCuaToiRoute
+  GvPhieuLuongRoute: typeof GvPhieuLuongRoute
   HocPhiBangGiaRoute: typeof HocPhiBangGiaRoute
   HocPhiDanhSachRoute: typeof HocPhiDanhSachRoute
   HocPhiTaoPhieuRoute: typeof HocPhiTaoPhieuRoute
@@ -451,6 +516,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HocPhiBangGiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gv/phieu-luong': {
+      id: '/gv/phieu-luong'
+      path: '/gv/phieu-luong'
+      fullPath: '/gv/phieu-luong'
+      preLoaderRoute: typeof GvPhieuLuongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/lop-cua-toi': {
+      id: '/gv/lop-cua-toi'
+      path: '/gv/lop-cua-toi'
+      fullPath: '/gv/lop-cua-toi'
+      preLoaderRoute: typeof GvLopCuaToiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/lich-day': {
+      id: '/gv/lich-day'
+      path: '/gv/lich-day'
+      fullPath: '/gv/lich-day'
+      preLoaderRoute: typeof GvLichDayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/diem-danh': {
+      id: '/gv/diem-danh'
+      path: '/gv/diem-danh'
+      fullPath: '/gv/diem-danh'
+      preLoaderRoute: typeof GvDiemDanhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gv/bang-cong': {
+      id: '/gv/bang-cong'
+      path: '/gv/bang-cong'
+      fullPath: '/gv/bang-cong'
+      preLoaderRoute: typeof GvBangCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cong/dieu-chinh': {
       id: '/cong/dieu-chinh'
       path: '/cong/dieu-chinh'
@@ -489,6 +589,11 @@ const rootRouteChildren: RootRouteChildren = {
   CongBangCongRoute: CongBangCongRoute,
   CongChotCongRoute: CongChotCongRoute,
   CongDieuChinhRoute: CongDieuChinhRoute,
+  GvBangCongRoute: GvBangCongRoute,
+  GvDiemDanhRoute: GvDiemDanhRoute,
+  GvLichDayRoute: GvLichDayRoute,
+  GvLopCuaToiRoute: GvLopCuaToiRoute,
+  GvPhieuLuongRoute: GvPhieuLuongRoute,
   HocPhiBangGiaRoute: HocPhiBangGiaRoute,
   HocPhiDanhSachRoute: HocPhiDanhSachRoute,
   HocPhiTaoPhieuRoute: HocPhiTaoPhieuRoute,
