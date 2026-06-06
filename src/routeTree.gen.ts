@@ -19,9 +19,15 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PhieuThuTaoRouteImport } from './routes/phieu-thu.tao'
 import { Route as PhieuThuDanhSachRouteImport } from './routes/phieu-thu.danh-sach'
 import { Route as PhieuThuDaHuyRouteImport } from './routes/phieu-thu.da-huy'
+import { Route as LuongTinhLuongRouteImport } from './routes/luong.tinh-luong'
+import { Route as LuongPhieuLuongRouteImport } from './routes/luong.phieu-luong'
+import { Route as LuongCauHinhRouteImport } from './routes/luong.cau-hinh'
 import { Route as HocPhiTaoPhieuRouteImport } from './routes/hoc-phi.tao-phieu'
 import { Route as HocPhiDanhSachRouteImport } from './routes/hoc-phi.danh-sach'
 import { Route as HocPhiBangGiaRouteImport } from './routes/hoc-phi.bang-gia'
+import { Route as CongDieuChinhRouteImport } from './routes/cong.dieu-chinh'
+import { Route as CongChotCongRouteImport } from './routes/cong.chot-cong'
+import { Route as CongBangCongRouteImport } from './routes/cong.bang-cong'
 
 const LopHocRoute = LopHocRouteImport.update({
   id: '/lop-hoc',
@@ -73,6 +79,21 @@ const PhieuThuDaHuyRoute = PhieuThuDaHuyRouteImport.update({
   path: '/phieu-thu/da-huy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LuongTinhLuongRoute = LuongTinhLuongRouteImport.update({
+  id: '/luong/tinh-luong',
+  path: '/luong/tinh-luong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuongPhieuLuongRoute = LuongPhieuLuongRouteImport.update({
+  id: '/luong/phieu-luong',
+  path: '/luong/phieu-luong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuongCauHinhRoute = LuongCauHinhRouteImport.update({
+  id: '/luong/cau-hinh',
+  path: '/luong/cau-hinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HocPhiTaoPhieuRoute = HocPhiTaoPhieuRouteImport.update({
   id: '/hoc-phi/tao-phieu',
   path: '/hoc-phi/tao-phieu',
@@ -88,6 +109,21 @@ const HocPhiBangGiaRoute = HocPhiBangGiaRouteImport.update({
   path: '/hoc-phi/bang-gia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CongDieuChinhRoute = CongDieuChinhRouteImport.update({
+  id: '/cong/dieu-chinh',
+  path: '/cong/dieu-chinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CongChotCongRoute = CongChotCongRouteImport.update({
+  id: '/cong/chot-cong',
+  path: '/cong/chot-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CongBangCongRoute = CongBangCongRouteImport.update({
+  id: '/cong/bang-cong',
+  path: '/cong/bang-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -97,9 +133,15 @@ export interface FileRoutesByFullPath {
   '/hoc-sinh': typeof HocSinhRoute
   '/lich-phan-cong': typeof LichPhanCongRoute
   '/lop-hoc': typeof LopHocRoute
+  '/cong/bang-cong': typeof CongBangCongRoute
+  '/cong/chot-cong': typeof CongChotCongRoute
+  '/cong/dieu-chinh': typeof CongDieuChinhRoute
   '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
   '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
   '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
+  '/luong/cau-hinh': typeof LuongCauHinhRoute
+  '/luong/phieu-luong': typeof LuongPhieuLuongRoute
+  '/luong/tinh-luong': typeof LuongTinhLuongRoute
   '/phieu-thu/da-huy': typeof PhieuThuDaHuyRoute
   '/phieu-thu/danh-sach': typeof PhieuThuDanhSachRoute
   '/phieu-thu/tao': typeof PhieuThuTaoRoute
@@ -112,9 +154,15 @@ export interface FileRoutesByTo {
   '/hoc-sinh': typeof HocSinhRoute
   '/lich-phan-cong': typeof LichPhanCongRoute
   '/lop-hoc': typeof LopHocRoute
+  '/cong/bang-cong': typeof CongBangCongRoute
+  '/cong/chot-cong': typeof CongChotCongRoute
+  '/cong/dieu-chinh': typeof CongDieuChinhRoute
   '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
   '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
   '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
+  '/luong/cau-hinh': typeof LuongCauHinhRoute
+  '/luong/phieu-luong': typeof LuongPhieuLuongRoute
+  '/luong/tinh-luong': typeof LuongTinhLuongRoute
   '/phieu-thu/da-huy': typeof PhieuThuDaHuyRoute
   '/phieu-thu/danh-sach': typeof PhieuThuDanhSachRoute
   '/phieu-thu/tao': typeof PhieuThuTaoRoute
@@ -128,9 +176,15 @@ export interface FileRoutesById {
   '/hoc-sinh': typeof HocSinhRoute
   '/lich-phan-cong': typeof LichPhanCongRoute
   '/lop-hoc': typeof LopHocRoute
+  '/cong/bang-cong': typeof CongBangCongRoute
+  '/cong/chot-cong': typeof CongChotCongRoute
+  '/cong/dieu-chinh': typeof CongDieuChinhRoute
   '/hoc-phi/bang-gia': typeof HocPhiBangGiaRoute
   '/hoc-phi/danh-sach': typeof HocPhiDanhSachRoute
   '/hoc-phi/tao-phieu': typeof HocPhiTaoPhieuRoute
+  '/luong/cau-hinh': typeof LuongCauHinhRoute
+  '/luong/phieu-luong': typeof LuongPhieuLuongRoute
+  '/luong/tinh-luong': typeof LuongTinhLuongRoute
   '/phieu-thu/da-huy': typeof PhieuThuDaHuyRoute
   '/phieu-thu/danh-sach': typeof PhieuThuDanhSachRoute
   '/phieu-thu/tao': typeof PhieuThuTaoRoute
@@ -145,9 +199,15 @@ export interface FileRouteTypes {
     | '/hoc-sinh'
     | '/lich-phan-cong'
     | '/lop-hoc'
+    | '/cong/bang-cong'
+    | '/cong/chot-cong'
+    | '/cong/dieu-chinh'
     | '/hoc-phi/bang-gia'
     | '/hoc-phi/danh-sach'
     | '/hoc-phi/tao-phieu'
+    | '/luong/cau-hinh'
+    | '/luong/phieu-luong'
+    | '/luong/tinh-luong'
     | '/phieu-thu/da-huy'
     | '/phieu-thu/danh-sach'
     | '/phieu-thu/tao'
@@ -160,9 +220,15 @@ export interface FileRouteTypes {
     | '/hoc-sinh'
     | '/lich-phan-cong'
     | '/lop-hoc'
+    | '/cong/bang-cong'
+    | '/cong/chot-cong'
+    | '/cong/dieu-chinh'
     | '/hoc-phi/bang-gia'
     | '/hoc-phi/danh-sach'
     | '/hoc-phi/tao-phieu'
+    | '/luong/cau-hinh'
+    | '/luong/phieu-luong'
+    | '/luong/tinh-luong'
     | '/phieu-thu/da-huy'
     | '/phieu-thu/danh-sach'
     | '/phieu-thu/tao'
@@ -175,9 +241,15 @@ export interface FileRouteTypes {
     | '/hoc-sinh'
     | '/lich-phan-cong'
     | '/lop-hoc'
+    | '/cong/bang-cong'
+    | '/cong/chot-cong'
+    | '/cong/dieu-chinh'
     | '/hoc-phi/bang-gia'
     | '/hoc-phi/danh-sach'
     | '/hoc-phi/tao-phieu'
+    | '/luong/cau-hinh'
+    | '/luong/phieu-luong'
+    | '/luong/tinh-luong'
     | '/phieu-thu/da-huy'
     | '/phieu-thu/danh-sach'
     | '/phieu-thu/tao'
@@ -191,9 +263,15 @@ export interface RootRouteChildren {
   HocSinhRoute: typeof HocSinhRoute
   LichPhanCongRoute: typeof LichPhanCongRoute
   LopHocRoute: typeof LopHocRoute
+  CongBangCongRoute: typeof CongBangCongRoute
+  CongChotCongRoute: typeof CongChotCongRoute
+  CongDieuChinhRoute: typeof CongDieuChinhRoute
   HocPhiBangGiaRoute: typeof HocPhiBangGiaRoute
   HocPhiDanhSachRoute: typeof HocPhiDanhSachRoute
   HocPhiTaoPhieuRoute: typeof HocPhiTaoPhieuRoute
+  LuongCauHinhRoute: typeof LuongCauHinhRoute
+  LuongPhieuLuongRoute: typeof LuongPhieuLuongRoute
+  LuongTinhLuongRoute: typeof LuongTinhLuongRoute
   PhieuThuDaHuyRoute: typeof PhieuThuDaHuyRoute
   PhieuThuDanhSachRoute: typeof PhieuThuDanhSachRoute
   PhieuThuTaoRoute: typeof PhieuThuTaoRoute
@@ -271,6 +349,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PhieuThuDaHuyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/luong/tinh-luong': {
+      id: '/luong/tinh-luong'
+      path: '/luong/tinh-luong'
+      fullPath: '/luong/tinh-luong'
+      preLoaderRoute: typeof LuongTinhLuongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luong/phieu-luong': {
+      id: '/luong/phieu-luong'
+      path: '/luong/phieu-luong'
+      fullPath: '/luong/phieu-luong'
+      preLoaderRoute: typeof LuongPhieuLuongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luong/cau-hinh': {
+      id: '/luong/cau-hinh'
+      path: '/luong/cau-hinh'
+      fullPath: '/luong/cau-hinh'
+      preLoaderRoute: typeof LuongCauHinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hoc-phi/tao-phieu': {
       id: '/hoc-phi/tao-phieu'
       path: '/hoc-phi/tao-phieu'
@@ -292,6 +391,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HocPhiBangGiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cong/dieu-chinh': {
+      id: '/cong/dieu-chinh'
+      path: '/cong/dieu-chinh'
+      fullPath: '/cong/dieu-chinh'
+      preLoaderRoute: typeof CongDieuChinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cong/chot-cong': {
+      id: '/cong/chot-cong'
+      path: '/cong/chot-cong'
+      fullPath: '/cong/chot-cong'
+      preLoaderRoute: typeof CongChotCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cong/bang-cong': {
+      id: '/cong/bang-cong'
+      path: '/cong/bang-cong'
+      fullPath: '/cong/bang-cong'
+      preLoaderRoute: typeof CongBangCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -303,9 +423,15 @@ const rootRouteChildren: RootRouteChildren = {
   HocSinhRoute: HocSinhRoute,
   LichPhanCongRoute: LichPhanCongRoute,
   LopHocRoute: LopHocRoute,
+  CongBangCongRoute: CongBangCongRoute,
+  CongChotCongRoute: CongChotCongRoute,
+  CongDieuChinhRoute: CongDieuChinhRoute,
   HocPhiBangGiaRoute: HocPhiBangGiaRoute,
   HocPhiDanhSachRoute: HocPhiDanhSachRoute,
   HocPhiTaoPhieuRoute: HocPhiTaoPhieuRoute,
+  LuongCauHinhRoute: LuongCauHinhRoute,
+  LuongPhieuLuongRoute: LuongPhieuLuongRoute,
+  LuongTinhLuongRoute: LuongTinhLuongRoute,
   PhieuThuDaHuyRoute: PhieuThuDaHuyRoute,
   PhieuThuDanhSachRoute: PhieuThuDanhSachRoute,
   PhieuThuTaoRoute: PhieuThuTaoRoute,
