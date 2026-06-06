@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LopHocRouteImport } from './routes/lop-hoc'
+import { Route as LichPhanCongRouteImport } from './routes/lich-phan-cong'
+import { Route as HocSinhRouteImport } from './routes/hoc-sinh'
+import { Route as GiaoVienRouteImport } from './routes/giao-vien'
+import { Route as DiemDanhRouteImport } from './routes/diem-danh'
+import { Route as DichVuRouteImport } from './routes/dich-vu'
 import { Route as IndexRouteImport } from './routes/index'
 
+const LopHocRoute = LopHocRouteImport.update({
+  id: '/lop-hoc',
+  path: '/lop-hoc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LichPhanCongRoute = LichPhanCongRouteImport.update({
+  id: '/lich-phan-cong',
+  path: '/lich-phan-cong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HocSinhRoute = HocSinhRouteImport.update({
+  id: '/hoc-sinh',
+  path: '/hoc-sinh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiaoVienRoute = GiaoVienRouteImport.update({
+  id: '/giao-vien',
+  path: '/giao-vien',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiemDanhRoute = DiemDanhRouteImport.update({
+  id: '/diem-danh',
+  path: '/diem-danh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DichVuRoute = DichVuRouteImport.update({
+  id: '/dich-vu',
+  path: '/dich-vu',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dich-vu': typeof DichVuRoute
+  '/diem-danh': typeof DiemDanhRoute
+  '/giao-vien': typeof GiaoVienRoute
+  '/hoc-sinh': typeof HocSinhRoute
+  '/lich-phan-cong': typeof LichPhanCongRoute
+  '/lop-hoc': typeof LopHocRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dich-vu': typeof DichVuRoute
+  '/diem-danh': typeof DiemDanhRoute
+  '/giao-vien': typeof GiaoVienRoute
+  '/hoc-sinh': typeof HocSinhRoute
+  '/lich-phan-cong': typeof LichPhanCongRoute
+  '/lop-hoc': typeof LopHocRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dich-vu': typeof DichVuRoute
+  '/diem-danh': typeof DiemDanhRoute
+  '/giao-vien': typeof GiaoVienRoute
+  '/hoc-sinh': typeof HocSinhRoute
+  '/lich-phan-cong': typeof LichPhanCongRoute
+  '/lop-hoc': typeof LopHocRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dich-vu'
+    | '/diem-danh'
+    | '/giao-vien'
+    | '/hoc-sinh'
+    | '/lich-phan-cong'
+    | '/lop-hoc'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dich-vu'
+    | '/diem-danh'
+    | '/giao-vien'
+    | '/hoc-sinh'
+    | '/lich-phan-cong'
+    | '/lop-hoc'
+  id:
+    | '__root__'
+    | '/'
+    | '/dich-vu'
+    | '/diem-danh'
+    | '/giao-vien'
+    | '/hoc-sinh'
+    | '/lich-phan-cong'
+    | '/lop-hoc'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DichVuRoute: typeof DichVuRoute
+  DiemDanhRoute: typeof DiemDanhRoute
+  GiaoVienRoute: typeof GiaoVienRoute
+  HocSinhRoute: typeof HocSinhRoute
+  LichPhanCongRoute: typeof LichPhanCongRoute
+  LopHocRoute: typeof LopHocRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/lop-hoc': {
+      id: '/lop-hoc'
+      path: '/lop-hoc'
+      fullPath: '/lop-hoc'
+      preLoaderRoute: typeof LopHocRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lich-phan-cong': {
+      id: '/lich-phan-cong'
+      path: '/lich-phan-cong'
+      fullPath: '/lich-phan-cong'
+      preLoaderRoute: typeof LichPhanCongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoc-sinh': {
+      id: '/hoc-sinh'
+      path: '/hoc-sinh'
+      fullPath: '/hoc-sinh'
+      preLoaderRoute: typeof HocSinhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/giao-vien': {
+      id: '/giao-vien'
+      path: '/giao-vien'
+      fullPath: '/giao-vien'
+      preLoaderRoute: typeof GiaoVienRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diem-danh': {
+      id: '/diem-danh'
+      path: '/diem-danh'
+      fullPath: '/diem-danh'
+      preLoaderRoute: typeof DiemDanhRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dich-vu': {
+      id: '/dich-vu'
+      path: '/dich-vu'
+      fullPath: '/dich-vu'
+      preLoaderRoute: typeof DichVuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +177,23 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DichVuRoute: DichVuRoute,
+  DiemDanhRoute: DiemDanhRoute,
+  GiaoVienRoute: GiaoVienRoute,
+  HocSinhRoute: HocSinhRoute,
+  LichPhanCongRoute: LichPhanCongRoute,
+  LopHocRoute: LopHocRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
