@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, type ReactNode } from "react";
-import { Trash2 } from "lucide-react";
+import { Trash2, X } from "lucide-react";
 import { Badge, Btn, Card, DataTable, Input, PageToolbar, Select } from "@/components/ui-bits";
 import { bangCong, formatVnd, giaoVien, lopHoc, phieuLuong } from "@/lib/mock-data";
 
@@ -9,6 +9,18 @@ export const Route = createFileRoute("/giao-vien")({ component: Page });
 type GiaoVien = (typeof giaoVien)[number];
 type SalarySlip = (typeof phieuLuong)[number];
 type TeacherTab = "Thông tin giáo viên" | "Lớp đang dạy" | "Báo cáo lương";
+type TeacherForm = {
+  ma: string;
+  ten: string;
+  lop: string;
+  sdt: string;
+  luongCb: string;
+  bhxh: string;
+  phuCap: string;
+  phuCapXang: string;
+  khoangCachKm: string;
+  congChuan: string;
+};
 
 const teacherTabs: TeacherTab[] = ["Thông tin giáo viên", "Lớp đang dạy", "Báo cáo lương"];
 
@@ -20,25 +32,40 @@ function Page() {
   const [selectedLop, setSelectedLop] = useState("Tất cả lớp phụ trách");
   const [currentPage, setCurrentPage] = useState(1);
   const [confirmDeleteMa, setConfirmDeleteMa] = useState<string | null>(null);
+  const [showAddPopup, setShowAddPopup] = useState(false);
   const PAGE_SIZE = 10;
   const selectedTeacher = teachers.find((item) => item.ma === selectedMa);
   const confirmDeleteTeacher = teachers.find((item) => item.ma === confirmDeleteMa);
 
-  const addTeacher = () => {
+  const nextTeacherCode = () => {
     const next = teachers.length + 1;
+    return `GV${String(next).padStart(2, "0")}`;
+  };
+
+  const addTeacher = (form: TeacherForm) => {
+    const distanceKm = Number(form.khoangCachKm) || 0;
     setTeachers([
       {
-        ma: `GV${String(next).padStart(2, "0")}`,
-        ten: `Cô mới ${next}`,
-        lop: "Chưa gán lớp",
-        sdt: "0900000000",
-        luongCb: 7500000,
-        bhxh: 600000,
-        phuCap: 500000,
-        congChuan: 26,
-      },
+        ma: form.ma.trim() || nextTeacherCode(),
+        ten: form.ten.trim() || "Giáo viên mới",
+        lop: form.lop,
+        sdt: form.sdt.trim() || "0900000000",
+        luongCb: Number(form.luongCb) || 0,
+        bhxh: Number(form.bhxh) || 0,
+        phuCap: Number(form.phuCap) || 0,
+        congChuan: Number(form.congChuan) || 26,
+        phuCapXang: Number(form.phuCapXang) || 0,
+        khoangCachKm: distanceKm,
+        cong2Chieu: distanceKm * 2,
+        soNgayThang: Number(form.congChuan) || 26,
+        binhQuanKm: distanceKm ? Math.round((Number(form.phuCapXang) || 0) / Math.max(1, distanceKm * 2 * (Number(form.congChuan) || 26))) : 0,
+      } as GiaoVien,
       ...teachers,
     ]);
+    setSearchQuery("");
+    setSelectedLop("Tất cả lớp phụ trách");
+    setCurrentPage(1);
+    setShowAddPopup(false);
   };
 
   const editTeacher = (ma: string) => {
@@ -100,8 +127,16 @@ function Page() {
           ))}
         </Select>
         <div className="flex-1" />
-        <Btn onClick={addTeacher}>Thêm giáo viên</Btn>
+        <Btn onClick={() => setShowAddPopup(true)}>Thêm giáo viên</Btn>
       </PageToolbar>
+
+      {showAddPopup && (
+        <AddTeacherPopup
+          nextCode={nextTeacherCode()}
+          onClose={() => setShowAddPopup(false)}
+          onSave={addTeacher}
+        />
+      )}
 
       <DataTable
         headers={[
@@ -218,6 +253,109 @@ function Page() {
         </div>
       )}
     </div>
+  );
+}
+
+function AddTeacherPopup({
+  nextCode,
+  onClose,
+  onSave,
+}: {
+  nextCode: string;
+  onClose: () => void;
+  onSave: (form: TeacherForm) => void;
+}) {
+  const [form, setForm] = useState<TeacherForm>({
+    ma: nextCode,
+    ten: "Cô mới",
+    lop: lopHoc[0]?.ten ?? "Chưa gán lớp",
+    sdt: "0900000000",
+    luongCb: "7500000",
+    bhxh: "600000",
+    phuCap: "500000",
+    phuCapXang: "420000",
+    khoangCachKm: "7",
+    congChuan: "26",
+  });
+
+  const update = (key: keyof TeacherForm, value: string) => {
+    setForm((current) => ({ ...current, [key]: value }));
+  };
+
+  const save = () => {
+    onSave(form);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/35 p-4">
+      <div className="w-full max-w-3xl overflow-hidden rounded-lg border bg-card shadow-xl">
+        <div className="flex items-center justify-between border-b px-5 py-3">
+          <div>
+            <div className="text-xs text-muted-foreground">Quản lý giáo viên</div>
+            <h2 className="text-lg font-semibold">Thêm giáo viên</h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-md p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"
+            title="Đóng"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="grid gap-4 p-5 md:grid-cols-2">
+          <FormField label="Mã GV">
+            <Input value={form.ma} onChange={(e: any) => update("ma", e.target.value)} />
+          </FormField>
+          <FormField label="Họ tên">
+            <Input value={form.ten} onChange={(e: any) => update("ten", e.target.value)} />
+          </FormField>
+          <FormField label="Lớp phụ trách">
+            <Select value={form.lop} onChange={(e: any) => update("lop", e.target.value)} className="w-full">
+              <option>Chưa gán lớp</option>
+              {lopHoc.map((lop) => (
+                <option key={lop.ma}>{lop.ten}</option>
+              ))}
+            </Select>
+          </FormField>
+          <FormField label="Số điện thoại">
+            <Input value={form.sdt} onChange={(e: any) => update("sdt", e.target.value)} />
+          </FormField>
+          <FormField label="Lương cơ bản">
+            <Input type="number" value={form.luongCb} onChange={(e: any) => update("luongCb", e.target.value)} />
+          </FormField>
+          <FormField label="BHXH">
+            <Input type="number" value={form.bhxh} onChange={(e: any) => update("bhxh", e.target.value)} />
+          </FormField>
+          <FormField label="Phụ cấp trách nhiệm">
+            <Input type="number" value={form.phuCap} onChange={(e: any) => update("phuCap", e.target.value)} />
+          </FormField>
+          <FormField label="Phụ cấp xăng">
+            <Input type="number" value={form.phuCapXang} onChange={(e: any) => update("phuCapXang", e.target.value)} />
+          </FormField>
+          <FormField label="Khoảng cách từ nhà đến nhóm (km)">
+            <Input type="number" value={form.khoangCachKm} onChange={(e: any) => update("khoangCachKm", e.target.value)} />
+          </FormField>
+          <FormField label="Công chuẩn">
+            <Input type="number" value={form.congChuan} onChange={(e: any) => update("congChuan", e.target.value)} />
+          </FormField>
+        </div>
+
+        <div className="flex items-center justify-end gap-2 border-t bg-secondary/30 px-5 py-3">
+          <Btn variant="secondary" onClick={onClose}>Hủy</Btn>
+          <Btn onClick={save}>Lưu giáo viên</Btn>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FormField({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <label className="grid gap-1.5 text-sm font-medium text-muted-foreground">
+      {label}
+      {children}
+    </label>
   );
 }
 
