@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { Trash2, X } from "lucide-react";
 import { Badge, Btn, Card, DataTable, Input, PageToolbar, Select } from "@/components/ui-bits";
 import { bangCong, formatVnd, giaoVien, lopHoc, phieuLuong } from "@/lib/mock-data";
@@ -265,25 +265,21 @@ function AddTeacherPopup({
   onClose: () => void;
   onSave: (form: TeacherForm) => void;
 }) {
-  const [form, setForm] = useState<TeacherForm>({
-    ma: nextCode,
-    ten: "Cô mới",
-    lop: lopHoc[0]?.ten ?? "Chưa gán lớp",
-    sdt: "0900000000",
-    luongCb: "7500000",
-    bhxh: "600000",
-    phuCap: "500000",
-    phuCapXang: "420000",
-    khoangCachKm: "7",
-    congChuan: "26",
-  });
-
-  const update = (key: keyof TeacherForm, value: string) => {
-    setForm((current) => ({ ...current, [key]: value }));
-  };
-
-  const save = () => {
-    onSave(form);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    onSave({
+      ma: String(data.get("ma") ?? ""),
+      ten: String(data.get("ten") ?? ""),
+      lop: String(data.get("lop") ?? ""),
+      sdt: String(data.get("sdt") ?? ""),
+      luongCb: String(data.get("luongCb") ?? ""),
+      bhxh: String(data.get("bhxh") ?? ""),
+      phuCap: String(data.get("phuCap") ?? ""),
+      phuCapXang: String(data.get("phuCapXang") ?? ""),
+      khoangCachKm: String(data.get("khoangCachKm") ?? ""),
+      congChuan: String(data.get("congChuan") ?? ""),
+    });
   };
 
   return (
@@ -303,15 +299,15 @@ function AddTeacherPopup({
           </button>
         </div>
 
-        <div className="grid gap-4 p-5 md:grid-cols-2">
+        <form id="add-teacher-form" onSubmit={handleSubmit} className="grid gap-4 p-5 md:grid-cols-2">
           <FormField label="Mã GV">
-            <Input value={form.ma} onChange={(e: any) => update("ma", e.target.value)} />
+            <Input name="ma" defaultValue={nextCode} />
           </FormField>
           <FormField label="Họ tên">
-            <Input value={form.ten} onChange={(e: any) => update("ten", e.target.value)} />
+            <Input name="ten" defaultValue="Cô mới" />
           </FormField>
           <FormField label="Lớp phụ trách">
-            <Select value={form.lop} onChange={(e: any) => update("lop", e.target.value)} className="w-full">
+            <Select name="lop" defaultValue={lopHoc[0]?.ten ?? "Chưa gán lớp"}>
               <option>Chưa gán lớp</option>
               {lopHoc.map((lop) => (
                 <option key={lop.ma}>{lop.ten}</option>
@@ -319,31 +315,37 @@ function AddTeacherPopup({
             </Select>
           </FormField>
           <FormField label="Số điện thoại">
-            <Input value={form.sdt} onChange={(e: any) => update("sdt", e.target.value)} />
+            <Input name="sdt" defaultValue="0900000000" />
           </FormField>
           <FormField label="Lương cơ bản">
-            <Input type="number" value={form.luongCb} onChange={(e: any) => update("luongCb", e.target.value)} />
+            <Input name="luongCb" type="number" defaultValue="7500000" />
           </FormField>
           <FormField label="BHXH">
-            <Input type="number" value={form.bhxh} onChange={(e: any) => update("bhxh", e.target.value)} />
+            <Input name="bhxh" type="number" defaultValue="600000" />
           </FormField>
           <FormField label="Phụ cấp trách nhiệm">
-            <Input type="number" value={form.phuCap} onChange={(e: any) => update("phuCap", e.target.value)} />
+            <Input name="phuCap" type="number" defaultValue="500000" />
           </FormField>
           <FormField label="Phụ cấp xăng">
-            <Input type="number" value={form.phuCapXang} onChange={(e: any) => update("phuCapXang", e.target.value)} />
+            <Input name="phuCapXang" type="number" defaultValue="420000" />
           </FormField>
           <FormField label="Khoảng cách từ nhà đến nhóm (km)">
-            <Input type="number" value={form.khoangCachKm} onChange={(e: any) => update("khoangCachKm", e.target.value)} />
+            <Input name="khoangCachKm" type="number" defaultValue="7" />
           </FormField>
           <FormField label="Công chuẩn">
-            <Input type="number" value={form.congChuan} onChange={(e: any) => update("congChuan", e.target.value)} />
+            <Input name="congChuan" type="number" defaultValue="26" />
           </FormField>
-        </div>
+        </form>
 
         <div className="flex items-center justify-end gap-2 border-t bg-secondary/30 px-5 py-3">
           <Btn variant="secondary" onClick={onClose}>Hủy</Btn>
-          <Btn onClick={save}>Lưu giáo viên</Btn>
+          <button
+            type="submit"
+            form="add-teacher-form"
+            className="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+          >
+            Lưu giáo viên
+          </button>
         </div>
       </div>
     </div>
